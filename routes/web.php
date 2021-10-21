@@ -65,3 +65,18 @@ Route::get('/fun/responses', function() use($posts){
     ->cookie('MY_COOKIE', 'Jacek Kostowski', 3600);
 });
 
+Route::get('/fun/redirect', function(){
+    return redirect(('/contact'));
+});
+
+Route::get('/fun/back', function(){
+    return back(); // powraca do ostatniej strony
+});
+
+Route::get('/fun/named-route', function(){
+    return redirect()->route('posts.show', ['id'=> 1]);
+});
+
+Route::get('/fun/away', function(){
+    return redirect()->away('https://www.google.pl');
+});
