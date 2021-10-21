@@ -80,3 +80,7 @@ Route::get('/fun/named-route', function(){
 Route::get('/fun/away', function(){
     return redirect()->away('https://www.google.pl');
 });
+
+Route::get('/fun/json', function() use($posts){
+    return response()->json($posts);
+});
