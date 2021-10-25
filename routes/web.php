@@ -36,20 +36,20 @@ $posts = [
         'is_new'    => false
     ],
     3 => [
-        'title'         => 'Intro LUnity',
+        'title'         => 'Intro Unity',
         'content'       => 'Content Unity',
         'is_new'        => true,
         'has_comment'   => true
     ]
 ];   
 
-Route::get('/posts', function() use ($posts)
-{
+Route::get('/posts', function() use ($posts){
+    dd(request()->all());
+    dd((int)request()->input('page',1));
     return view('posts.index', ['posts' => $posts]);
 });
 
-Route::get('/posts/{id}', function($id) use ($posts)
-    {   
+Route::get('/posts/{id}', function($id) use ($posts){   
         abort_if(!isset($posts[$id]), 404); // wywala 404 jeeli nie id poza zakresem
         return view('posts.show', ['post' => $posts[$id]]); 
     }
