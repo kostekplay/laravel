@@ -59,32 +59,34 @@ Route::get('/recent-posts/{days_ago?}', function ($daysAgo = 7) {
     return 'Blog post from'.$daysAgo;
 })->name('posts.recent.index');
 
-Route::get('/fun/responses', function() use($posts){
-    return response($posts, 201)
-    ->header('Content-Type','application/json')
-    ->cookie('MY_COOKIE', 'Jacek Kostowski', 3600);
-});
+Route::prefix('/fun')->name('fun.')->group(function() use($posts){
+    Route::get('responses', function() use($posts){
+        return response($posts, 201)
+        ->header('Content-Type','application/json')
+        ->cookie('MY_COOKIE', 'Jacek Kostowski', 3600);
+    })->name('response');
 
-Route::get('/fun/redirect', function(){
-    return redirect(('/contact'));
-});
+    Route::get('redirect', function(){
+        return redirect(('/contact'));
+    })->name('redirect');
 
-Route::get('/fun/back', function(){
-    return back(); // powraca do ostatniej strony
-});
+    Route::get('back', function(){
+        return back(); // powraca do ostatniej strony
+    })->name('back');
 
-Route::get('/fun/named-route', function(){
-    return redirect()->route('posts.show', ['id'=> 1]);
-});
+    Route::get('named-route', function(){
+        return redirect()->route('posts.show', ['id'=> 1]);
+    });
 
-Route::get('/fun/away', function(){
-    return redirect()->away('https://www.google.pl');
-});
+    Route::get('away', function(){
+        return redirect()->away('https://www.google.pl');
+    })->name('away');
 
-Route::get('/fun/json', function() use($posts){
-    return response()->json($posts);
-});
+    Route::get('json', function() use($posts){
+        return response()->json($posts);
+    })->name('json');
 
-Route::get('/fun/download', function() use($posts){
-    return response()->download(public_path('/foto_jacek.jpg'), 'jacek.jpg');
+    Route::get('download', function() use($posts){
+        return response()->download(public_path('/foto_jacek.jpg'), 'jacek.jpg');
+    })->name('download');
 });
