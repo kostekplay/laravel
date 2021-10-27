@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -12,8 +13,10 @@ use Illuminate\Support\Facades\Route;
 //     return view('home.contact');
 // })->name('home.contact'); // php artisan route:list
 
-Route::view('/', 'home.index')->name('home.index');
-Route::view('/contact', 'home.contact')->name('home.contact');
+Route::get('/', [HomeController::class, 'home'])
+    ->name('home.index');
+Route::get('/contact', [HomeController::class, 'contact'])
+    ->name('home.contact');
 
 // Route::get('/posts/{id}', function ($id) {
 //     return 'Blog post '.$id;
