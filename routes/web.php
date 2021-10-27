@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,8 @@ Route::get('/', [HomeController::class, 'home'])
     ->name('home.index');
 Route::get('/contact', [HomeController::class, 'contact'])
     ->name('home.contact');
+
+Route::get('/single', AboutController::class);
 
 // Route::get('/posts/{id}', function ($id) {
 //     return 'Blog post '.$id;
