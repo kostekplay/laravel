@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
+
+Route::resource('posts', PostsController::class)->only(['index','show']);
 
 // Route::get('/', function () {
 //     return view('home.index');
@@ -14,12 +17,12 @@ use Illuminate\Support\Facades\Route;
 //     return view('home.contact');
 // })->name('home.contact'); // php artisan route:list
 
-Route::get('/', [HomeController::class, 'home'])
-    ->name('home.index');
-Route::get('/contact', [HomeController::class, 'contact'])
-    ->name('home.contact');
+// Route::get('/', [HomeController::class, 'home'])
+//     ->name('home.index');
+// Route::get('/contact', [HomeController::class, 'contact'])
+//     ->name('home.contact');
 
-Route::get('/single', AboutController::class);
+// Route::get('/single', AboutController::class);
 
 // Route::get('/posts/{id}', function ($id) {
 //     return 'Blog post '.$id;
@@ -49,21 +52,21 @@ $posts = [
     ]
 ];   
 
-Route::get('/posts', function() use ($posts){
-    dd(request()->all());
-    dd((int)request()->input('page',1));
-    return view('posts.index', ['posts' => $posts]);
-});
+// Route::get('/posts', function() use ($posts){
+//     dd(request()->all());
+//     dd((int)request()->input('page',1));
+//     return view('posts.index', ['posts' => $posts]);
+// });
 
-Route::get('/posts/{id}', function($id) use ($posts){   
-        abort_if(!isset($posts[$id]), 404); // wywala 404 jeeli nie id poza zakresem
-        return view('posts.show', ['post' => $posts[$id]]); 
-    }
-);
+// Route::get('/posts/{id}', function($id) use ($posts){   
+//         abort_if(!isset($posts[$id]), 404); // wywala 404 jeeli nie id poza zakresem
+//         return view('posts.show', ['post' => $posts[$id]]); 
+//     }
+// );
 
-Route::get('/recent-posts/{days_ago?}', function ($daysAgo = 7) {
-    return 'Blog post from'.$daysAgo;
-})->name('posts.recent.index');
+// Route::get('/recent-posts/{days_ago?}', function ($daysAgo = 7) {
+//     return 'Blog post from'.$daysAgo;
+// })->name('posts.recent.index');
 
 Route::prefix('/fun')->name('fun.')->group(function() use($posts){
     Route::get('responses', function() use($posts){

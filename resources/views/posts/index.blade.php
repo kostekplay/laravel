@@ -8,6 +8,6 @@
         @include('posts.partials.post')
     @endforeach  --}}
 
-    @each('posts.partials.post', $posts, 'post')
+    @each('posts.partials.post', $post, 'post')
 
 @endsection
