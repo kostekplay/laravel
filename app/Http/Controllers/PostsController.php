@@ -2,30 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BlogPost;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
 
-    private $posts = [
-        1 => [
-            'title' => 'Intro Laravel',
-            'content' => 'Content Laravel',
-            'is_new' => true,
-            'has_comment' => true,
-        ],
-        2 => [
-            'title' => 'Intro PHP',
-            'content' => 'Content PHP',
-            'is_new' => false,
-        ],
-        3 => [
-            'title' => 'Intro Unity',
-            'content' => 'Content Unity',
-            'is_new' => true,
-            'has_comment' => true,
-        ],
-    ];
+    // private $posts = [
+    //     1 => [
+    //         'title' => 'Intro Laravel',
+    //         'content' => 'Content Laravel',
+    //         'is_new' => true,
+    //         'has_comment' => true,
+    //     ],
+    //     2 => [
+    //         'title' => 'Intro PHP',
+    //         'content' => 'Content PHP',
+    //         'is_new' => false,
+    //     ],
+    //     3 => [
+    //         'title' => 'Intro Unity',
+    //         'content' => 'Content Unity',
+    //         'is_new' => true,
+    //         'has_comment' => true,
+    //     ],
+    // ];
 
     /**
      * Display a listing of the resource.
@@ -34,7 +35,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        return view('posts.index', ['post' => $this->posts]);
+        return view('posts.index', ['post' => BlogPost::orderBy('created_at','desc')->take(5)->get()]);
     }
 
     /**
@@ -66,8 +67,9 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        abort_if(!isset($this->posts[$id]), 404);
-        return view('posts.show', ['post' => $this->posts[$id]]);
+        //abort_if(!isset($this->posts[$id]), 404);
+        //return view('posts.show', ['post' => $this->posts[$id]]);
+        return view('posts.show', ['post' => BlogPost::findOrFail($id)]);
     }
 
     /**
