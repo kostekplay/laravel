@@ -5,7 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
 
-Route::resource('posts', PostsController::class)->only(['index','show']);
+Route::resource('posts', PostsController::class)->only(['index','show','create','store']);
 
 // Route::get('/', function () {
 //     return view('home.index');
