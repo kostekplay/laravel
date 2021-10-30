@@ -57,6 +57,13 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         //dd($request);
+
+        // bail - kończy dalszą validację jak nastąpi błąd w tym miejscu
+        $request->validate([
+            'title' => 'bail|required|min:5|max:100',
+            'content' => 'required|min:10|max:100'
+        ]);
+
         $post = new BlogPost();
         $post->title = $request->input(('title'));
         $post->content = $request->input(('content'));
