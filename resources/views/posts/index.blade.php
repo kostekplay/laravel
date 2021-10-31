@@ -4,10 +4,10 @@
 
 @section('content')
 
-    {{--  @foreach ($posts as $key=>$post)
-        @include('posts.partials.post')
-    @endforeach  --}}
-
-    @each('posts.partials.post', $post, 'post')
+@forelse ($posts as $key => $post)
+  @include('posts.partials.post', [])
+@empty
+    No posts found!
+@endforelse
 
 @endsection
