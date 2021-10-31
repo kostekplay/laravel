@@ -8,32 +8,6 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-
-    // private $posts = [
-    //     1 => [
-    //         'title' => 'Intro Laravel',
-    //         'content' => 'Content Laravel',
-    //         'is_new' => true,
-    //         'has_comment' => true,
-    //     ],
-    //     2 => [
-    //         'title' => 'Intro PHP',
-    //         'content' => 'Content PHP',
-    //         'is_new' => false,
-    //     ],
-    //     3 => [
-    //         'title' => 'Intro Unity',
-    //         'content' => 'Content Unity',
-    //         'is_new' => true,
-    //         'has_comment' => true,
-    //     ],
-    // ];
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         return view('posts.index', ['post' => BlogPost::orderBy('created_at','desc')->take(5)->get()]);
@@ -58,11 +32,6 @@ class PostsController extends Controller
     public function store(StorePost $request)
     {
         $validated = $request->validated();
-
-        // $post = new BlogPost();
-        // $post->title = $validated['title'];
-        // $post->content = $validated['content'];
-        // $post->save();
 
         $validated = $request->validated();
         $post = BlogPost::create($validated);
@@ -93,7 +62,7 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('posts.edit',['post' => BlogPost::findOrFail($id)]);
     }
 
     /**
