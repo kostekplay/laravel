@@ -18,8 +18,8 @@ class CreateBlogPostsTable extends Migration
             $table->timestamps();
 
             // dodanie wlasnych pól tabelo
-            $table->string('title');
-            $table->text('content');
+            $table->string('title')->default('');
+            $table->text('content')->default('');
         });
     }
 
