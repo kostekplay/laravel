@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 Route::resource('posts', PostsController::class)
 ->only(['index','show','create','store','edit','update','destroy']);
 
-Route::get('/index', [HomeController::class, 'home'])
+Route::get('/', [HomeController::class, 'home'])
     ->name('home.index');
 Route::get('/contact', [HomeController::class, 'contact'])
     ->name('home.contact');
