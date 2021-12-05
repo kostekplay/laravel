@@ -10,7 +10,7 @@ class Author extends Model
     use HasFactory;
 
     public function profile() {
-        return $this->hasOne('App\Profile');
+        return $this->hasOne('App\Models\Profile');
     }
 }
 
