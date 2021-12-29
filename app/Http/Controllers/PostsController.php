@@ -5,11 +5,23 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePost;
 use App\Models\BlogPost;
 use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\DB;
 
 class PostsController extends Controller
 {
     public function index()
     {
+
+        // $posts = BlogPost::all();
+
+        // foreach( $posts as $post) 
+        // {
+        //     foreach($post->comment as $comm)
+        //     {
+        //         echo $comm->content;
+        //     }
+        // }
+
         //return view('posts.index', ['post' => BlogPost::orderBy('created_at','desc')->take(5)->get()]);
         return view('posts.index', ['posts' => BlogPost::all()]);
     }
