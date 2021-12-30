@@ -93,18 +93,18 @@ class PostTest extends TestCase
         ]);
     }
 
-    public function testDelete()
-    {
-        $post = $this->createDummyBlogPost();
-        $this->assertDatabaseHas('blog_posts', $post->toArray());
+    // public function testDelete()
+    // {
+    //     $post = $this->createDummyBlogPost();
+    //     $this->assertDatabaseHas('blog_posts', $post->toArray());
 
-        $this->delete("/posts/{$post->id}")
-            ->assertStatus(302)
-            ->assertSessionHas('status');
+    //     $this->delete("/posts/{$post->id}")
+    //         ->assertStatus(302)
+    //         ->assertSessionHas('status');
 
-        $this->assertEquals(session('status'), 'Blog post was delete!');
-        $this->assertDatabaseMissing('blog_posts', $post->toArray());
-    }
+    //     $this->assertEquals(session('status'), 'Blog post was delete!');
+    //     $this->assertDatabaseMissing('blog_posts', $post->toArray());
+    // }
 
     private function createDummyBlogPost(): BlogPost
     {
@@ -114,7 +114,6 @@ class PostTest extends TestCase
         $post->save();
 
         return $post;
-
     }
 
 }

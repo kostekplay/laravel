@@ -23,7 +23,10 @@ class PostsController extends Controller
         // }
 
         //return view('posts.index', ['post' => BlogPost::orderBy('created_at','desc')->take(5)->get()]);
-        return view('posts.index', ['posts' => BlogPost::all()]);
+
+        // comment_count
+        return view('posts.index', 
+        ['posts' => BlogPost::withCount('comment')->get()]);
     }
 
     /**
